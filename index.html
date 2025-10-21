@@ -1,293 +1,584 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Charter</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',sans-serif;line-height:1.6;color:#333;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}.container{max-width:1200px;margin:0 auto;background:rgba(255,255,255,.95);border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,.1);overflow:hidden}.header{background:linear-gradient(135deg,#2c3e50 0%,#3498db 100%);color:#fff;padding:40px;text-align:center}.header h1{font-size:2.5rem;margin-bottom:10px}.header .subtitle{font-size:1.2rem;opacity:.9}.student-info{background:#f8f9fa;padding:30px 40px;border-left:5px solid #3498db}.student-info h2{color:#2c3e50;margin-bottom:15px}.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px}.info-item{background:#fff;padding:15px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.1)}.info-label{font-weight:700;color:#3498db}.info-value{color:#2c3e50;font-size:1.1rem}.tabs{display:flex;background:#2c3e50}.tab{flex:1;padding:20px;text-align:center;color:#fff;cursor:pointer;transition:background .3s;border-bottom:3px solid transparent}.tab:hover{background:#34495e}.tab.active{background:#3498db;border-bottom-color:#fff}.tab-content{display:none}.tab-content.active{display:block}.section{border-bottom:1px solid #e9ecef}.section-header{background:linear-gradient(135deg,#f8f9fa 0%,#e9ecef 100%);padding:25px 40px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:all .3s;border-left:5px solid transparent}.section-header:hover{background:linear-gradient(135deg,#e9ecef 0%,#dee2e6 100%);border-left-color:#3498db}.section-header.active{background:linear-gradient(135deg,#3498db 0%,#2980b9 100%);color:#fff;border-left-color:#2c3e50}.section-title{font-size:1.4rem;font-weight:600;display:flex;align-items:center;gap:15px}.section-number{background:#3498db;color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700}.section-header.active .section-number{background:#fff;color:#3498db}.toggle-icon{font-size:1.5rem;transition:transform .3s}.section-header.active .toggle-icon{transform:rotate(180deg)}.section-content{max-height:0;overflow:hidden;transition:max-height .4s ease;background:#fff}.section-content.active{max-height:10000px;padding:30px 40px}.section-content h3{color:#2c3e50;margin:20px 0 15px}.section-content p{margin-bottom:15px;color:#555}.section-content ul,.section-content ol{margin-bottom:15px;padding-left:20px}.section-content li{margin-bottom:8px;color:#555}.goal-callout{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:25px;border-radius:15px;margin:25px 0;border-left:5px solid #fff}.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin:20px 0}.metric-box{background:#fff;border:2px solid #3498db;padding:15px;border-radius:10px;text-align:center}.metric-value{font-size:2rem;font-weight:700;color:#3498db;display:block}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;margin:20px 0}.stat-card{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:20px;border-radius:15px;text-align:center}.stat-number{font-size:2.5rem;font-weight:700;display:block}.deliverable-card{background:linear-gradient(135deg,#f8f9fa 0%,#e9ecef 100%);border-left:5px solid #3498db;padding:20px;border-radius:10px;margin:20px 0}.tool-card{background:#fff;border:2px solid #e9ecef;padding:20px;border-radius:12px;margin:15px 0}.tool-header{display:flex;justify-content:space-between;margin-bottom:10px}.tool-name{font-size:1.2rem;font-weight:600;color:#2c3e50}.tool-cost{background:#d4edda;color:#155724;padding:5px 12px;border-radius:20px;font-size:.9rem;font-weight:600}table{width:100%;border-collapse:collapse;margin:20px 0;background:#fff;border-radius:10px;overflow:hidden}th,td{padding:15px;text-align:left;border-bottom:1px solid #e9ecef}th{background:linear-gradient(135deg,#2c3e50 0%,#34495e 100%);color:#fff}.tag{display:inline-block;padding:5px 12px;border-radius:20px;font-size:.8rem;margin:2px}.tag.internal{background:#d1ecf1;color:#0c5460}.tag.external{background:#f8d7da;color:#721c24}.tag.high{background:#d4edda;color:#155724}.tag.medium{background:#fff3cd;color:#856404}.tag.low{background:#f8d7da;color:#721c24}.status-reports{padding:30px}.add-report-btn{background:#3498db;color:#fff;padding:12px 24px;border:none;border-radius:8px;cursor:pointer;font-size:1rem;margin-bottom:20px}.add-report-btn:hover{background:#2980b9}.report-card{background:#fff;border-left:5px solid #3498db;padding:20px;border-radius:10px;margin:20px 0;box-shadow:0 2px 10px rgba(0,0,0,.1)}.report-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.report-title{font-size:1.3rem;font-weight:600;color:#2c3e50}.report-date{color:#666;font-size:.9rem}.report-content{color:#555;line-height:1.8;white-space:pre-wrap}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:1000;overflow-y:auto}.modal.active{display:flex;align-items:flex-start;justify-content:center;padding:20px}.modal-content{background:#fff;padding:30px;border-radius:15px;width:90%;max-width:600px;margin:20px auto;max-height:90vh;overflow-y:auto}.modal-header{font-size:1.5rem;font-weight:600;margin-bottom:20px;color:#2c3e50}.form-group{margin-bottom:20px}.form-group label{display:block;margin-bottom:8px;font-weight:600;color:#2c3e50}.form-group input,.form-group textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;font-family:inherit;font-size:1rem}.form-group textarea{min-height:150px;resize:vertical}.modal-buttons{display:flex;gap:10px;justify-content:flex-end}.btn{padding:10px 20px;border:none;border-radius:5px;cursor:pointer;font-size:1rem}.btn-primary{background:#3498db;color:#fff}.btn-primary:hover{background:#2980b9}.btn-secondary{background:#95a5a6;color:#fff}.btn-secondary:hover{background:#7f8c8d}.delete-btn{background:#e74c3c;color:#fff;padding:8px 16px;border:none;border-radius:5px;cursor:pointer;font-size:.9rem}.delete-btn:hover{background:#c0392b}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Project Charter</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Segoe UI',sans-serif;line-height:1.6;color:#333;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}
+    .container{max-width:1200px;margin:0 auto;background:rgba(255,255,255,.95);border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,.1);overflow:hidden}
+    .header{background:linear-gradient(135deg,#2c3e50 0%,#3498db 100%);color:#fff;padding:40px;text-align:center}
+    .header h1{font-size:2.5rem;margin-bottom:10px}
+    .header .subtitle{font-size:1.2rem;opacity:.9}
+
+    .student-info{background:#f8f9fa;padding:30px 40px;border-left:5px solid #3498db}
+    .student-info h2{color:#2c3e50;margin-bottom:15px}
+    .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px}
+    .info-item{background:#fff;padding:15px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+    .info-label{font-weight:700;color:#3498db}
+    .info-value{color:#2c3e50;font-size:1.1rem}
+
+    .tabs{display:flex;background:#2c3e50}
+    .tab{flex:1;padding:20px;text-align:center;color:#fff;cursor:pointer;transition:background .3s;border-bottom:3px solid transparent}
+    .tab:hover{background:#34495e}
+    .tab.active{background:#3498db;border-bottom-color:#fff}
+    .tab-content{display:none}
+    .tab-content.active{display:block}
+
+    .section{border-bottom:1px solid #e9ecef}
+    .section-header{background:linear-gradient(135deg,#f8f9fa 0%,#e9ecef 100%);padding:25px 40px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:all .3s;border-left:5px solid transparent}
+    .section-header:hover{background:linear-gradient(135deg,#e9ecef 0%,#dee2e6 100%);border-left-color:#3498db}
+    .section-header.active{background:linear-gradient(135deg,#3498db 0%,#2980b9 100%);color:#fff;border-left-color:#2c3e50}
+    .section-title{font-size:1.4rem;font-weight:600;display:flex;align-items:center;gap:15px}
+    .section-number{background:#3498db;color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700}
+    .section-header.active .section-number{background:#fff;color:#3498db}
+    .toggle-icon{font-size:1.5rem;transition:transform .3s}
+    .section-header.active .toggle-icon{transform:rotate(180deg)}
+    .section-content{max-height:0;overflow:hidden;transition:max-height .4s ease;background:#fff}
+    .section-content.active{max-height:10000px;padding:30px 40px}
+    .section-content h3{color:#2c3e50;margin:20px 0 15px}
+    .section-content p{margin-bottom:15px;color:#555}
+    .section-content ul,.section-content ol{margin-bottom:15px;padding-left:20px}
+    .section-content li{margin-bottom:8px;color:#555}
+
+    .goal-callout{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:25px;border-radius:15px;margin:25px 0;border-left:5px solid #fff}
+    .metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin:20px 0}
+    .metric-box{background:#fff;border:2px solid #3498db;padding:15px;border-radius:10px;text-align:center}
+    .metric-value{font-size:2rem;font-weight:700;color:#3498db;display:block}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;margin:20px 0}
+    .stat-card{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:20px;border-radius:15px;text-align:center}
+    .stat-number{font-size:2.5rem;font-weight:700;display:block}
+
+    .deliverable-card{background:linear-gradient(135deg,#f8f9fa 0%,#e9ecef 100%);border-left:5px solid #3498db;padding:20px;border-radius:10px;margin:20px 0}
+
+    .tool-card{background:#fff;border:2px solid #e9ecef;padding:20px;border-radius:12px;margin:15px 0}
+    .tool-header{display:flex;justify-content:space-between;margin-bottom:10px}
+    .tool-name{font-size:1.2rem;font-weight:600;color:#2c3e50}
+    .tool-cost{background:#d4edda;color:#155724;padding:5px 12px;border-radius:20px;font-size:.9rem;font-weight:600}
+
+    table{width:100%;border-collapse:collapse;margin:20px 0;background:#fff;border-radius:10px;overflow:hidden}
+    th,td{padding:15px;text-align:left;border-bottom:1px solid #e9ecef}
+    th{background:linear-gradient(135deg,#2c3e50 0%,#34495e 100%);color:#fff}
+
+    .tag{display:inline-block;padding:5px 12px;border-radius:20px;font-size:.8rem;margin:2px}
+    .tag.internal{background:#d1ecf1;color:#0c5460}
+    .tag.external{background:#f8d7da;color:#721c24}
+    .tag.high{background:#d4edda;color:#155724}
+    .tag.medium{background:#fff3cd;color:#856404}
+    .tag.low{background:#f8d7da;color:#721c24}
+
+    .status-reports{padding:30px}
+    .add-report-btn{background:#3498db;color:#fff;padding:12px 24px;border:none;border-radius:8px;cursor:pointer;font-size:1rem;margin-bottom:20px}
+    .add-report-btn:hover{background:#2980b9}
+    .report-card{background:#fff;border-left:5px solid #3498db;padding:20px;border-radius:10px;margin:20px 0;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+    .report-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+    .report-title{font-size:1.3rem;font-weight:600;color:#2c3e50}
+    .report-date{color:#666;font-size:.9rem}
+    .report-content{color:#555;line-height:1.8;white-space:pre-wrap}
+
+    .moved-callout{background:linear-gradient(135deg,#3498db 0%,#2980b9 100%);color:#fff;padding:24px;border-radius:12px;text-align:center;margin-bottom:25px}
+    .moved-callout a{display:inline-block;margin-top:10px;padding:12px 24px;background:#fff;color:#3498db;font-weight:600;border-radius:8px;text-decoration:none}
+
+    .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:1000;overflow-y:auto}
+    .modal.active{display:flex;align-items:flex-start;justify-content:center;padding:20px}
+    .modal-content{background:#fff;padding:30px;border-radius:15px;width:90%;max-width:600px;margin:20px auto;max-height:90vh;overflow-y:auto}
+    .modal-header{font-size:1.5rem;font-weight:600;margin-bottom:20px;color:#2c3e50}
+    .form-group{margin-bottom:20px}
+    .form-group label{display:block;margin-bottom:8px;font-weight:600;color:#2c3e50}
+    .form-group input,.form-group textarea, .form-group select{width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;font-family:inherit;font-size:1rem}
+    .form-group textarea{min-height:150px;resize:vertical}
+    .modal-buttons{display:flex;gap:10px;justify-content:flex-end}
+    .btn{padding:10px 20px;border:none;border-radius:5px;cursor:pointer;font-size:1rem}
+    .btn-primary{background:#3498db;color:#fff}
+    .btn-primary:hover{background:#2980b9}
+    .btn-secondary{background:#95a5a6;color:#fff}
+    .btn-secondary:hover{background:#7f8c8d}
+    .delete-btn{background:#e74c3c;color:#fff;padding:8px 16px;border:none;border-radius:5px;cursor:pointer;font-size:.9rem}
+    .delete-btn:hover{background:#c0392b}
+  </style>
 </head>
 <body>
-<div class="container">
-<div class="header">
-<h1>Solving Problems for Small Businesses</h1>
-<p class="subtitle">Project Charter - Managing IT Projects Course</p>
-</div>
-<div class="student-info">
-<h2>Student Information</h2>
-<div class="info-grid">
-<div class="info-item"><div class="info-label">Student Name</div><div class="info-value">Robert Martinez</div></div>
-<div class="info-item"><div class="info-label">Course</div><div class="info-value">Managing IT Projects</div></div>
-<div class="info-item"><div class="info-label">Semester</div><div class="info-value">Fall 2025</div></div>
-</div>
-</div>
-<div class="tabs">
-<div class="tab active" onclick="switchTab('project')">Project</div>
-<div class="tab" onclick="switchTab('status')">Status Updates</div>
-</div>
-<div id="project-tab" class="tab-content active">
-<div class="content">
-<div class="section">
-<div class="section-header" onclick="toggle(this)">
-<div class="section-title"><span class="section-number">1</span>Project Title and Description</div>
-<span class="toggle-icon">▼</span>
-</div>
-<div class="section-content">
-<div class="stats-grid">
-<div class="stat-card"><span class="stat-number">3</span><span>AI Channels</span></div>
-<div class="stat-card"><span class="stat-number">1</span><span>Unified Solution</span></div>
-<div class="stat-card"><span class="stat-number">∞</span><span>Opportunities Saved</span></div>
-</div>
-<p>This project will create an interactive solution that helps small businesses market themselves more effectively to local clients. By integrating AI technologies such as phone-based digital assistants and automated responses for chat and email, the project will provide businesses with smarter, faster ways to interact with customers.</p>
-</div>
-</div>
-<div class="section">
-<div class="section-header" onclick="toggle(this)">
-<div class="section-title"><span class="section-number">2</span>Vision, Mission and Strategy Alignment</div>
-<span class="toggle-icon">▼</span>
-</div>
-<div class="section-content">
-<div class="goal-callout"><strong>Project Goal:</strong> Deploy a GoHighLevel-powered business referral network by December 6, 2025, connecting 3 small businesses through automated AI engagement to generate measurable client acquisition results. Present the fully functional system to stakeholders and hand off the self-sustaining solution for independent operation.</div>
+  <div class="container">
+    <div class="header">
+      <h1>Automated IT + AI System for Small Businesses</h1>
+      <p class="subtitle">Project Charter - Managing IT Projects Course</p>
+    </div>
 
-<div style="background:#f8f9fa;padding:20px;border-radius:10px;margin:25px 0;border-left:5px solid #2c3e50">
-<h3 style="margin-top:0">High-Level Outcome (Final Version)</h3>
-<p>By the end of the project, a fully functional AI-integrated IT system and website will be delivered and handed over to a small business client. The system will automate client communication processes—including lead capture, scheduling, and follow-up—through AI-driven tools designed and configured during the semester. Upon completion, the client will have full control of the system and the ability to operate it independently.</p>
-<p>The successful completion of this project will demonstrate full project lifecycle management—from planning and design to implementation, testing, and client handoff—showcasing how AI solutions can be effectively integrated to meet real business needs.</p>
-</div>
+    <div class="student-info">
+      <h2>Student Information</h2>
+      <div class="info-grid">
+        <div class="info-item"><div class="info-label">Student Name</div><div class="info-value">Robert Martinez</div></div>
+        <div class="info-item"><div class="info-label">Course</div><div class="info-value">Managing IT Projects</div></div>
+        <div class="info-item"><div class="info-label">Semester</div><div class="info-value">Fall 2025</div></div>
+      </div>
+    </div>
 
-<div class="metric-grid">
-<div class="metric-box"><span class="metric-value">3</span><span>Total Businesses</span></div>
-<div class="metric-box"><span class="metric-value">3</span><span>New Clients</span></div>
-<div class="metric-box"><span class="metric-value">Dec 6</span><span>Deadline</span></div>
-<div class="metric-box"><span class="metric-value">50hrs</span><span>Time Investment</span></div>
-</div>
-<h3>Personal Mission</h3>
-<p>I have always been passionate about fixing problems and improving processes for small businesses. This consistent support has grown into a genuine passion for empowering entrepreneurs.</p>
-<h3>Vision Alignment</h3>
-<p>This project takes a step toward scaling solutions that make small businesses more visible and competitive, evolving into a self-sustaining model.</p>
-</div>
-</div>
-<div class="section">
-<div class="section-header" onclick="toggle(this)">
-<div class="section-title"><span class="section-number">3</span>Business Case and Justification</div>
-<span class="toggle-icon">▼</span>
-</div>
-<div class="section-content">
-<h3>Professional Value</h3>
-<p>This project strengthens my career by demonstrating ability to design solutions for specific business use cases while implementing modern tools.</p>
-<h3>Learning Outcomes</h3>
-<p>I expect to gain stronger skills in website programming, leveraging AI for customer engagement, and project management frameworks.</p>
-</div>
-</div>
-<div class="section">
-<div class="section-header" onclick="toggle(this)">
-<div class="section-title"><span class="section-number">4</span>Budget Estimation</div>
-<span class="toggle-icon">▼</span>
-</div>
-<div class="section-content">
-<table>
-<thead><tr><th>Item</th><th>Cost</th><th>Total</th></tr></thead>
-<tbody>
-<tr><td>GoHighLevel Agency Pro</td><td>$297/mo × 3</td><td><strong>$891</strong></td></tr>
-<tr><td>Lovable.dev</td><td>$25/mo × 3</td><td><strong>$75</strong></td></tr>
-<tr><td>Labor</td><td>50 hrs × $75</td><td><strong>$3,750</strong></td></tr>
-<tr style="font-weight:bold"><td colspan="2">Total Budget</td><td><strong>$4,716</strong></td></tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="section">
-<div class="section-header" onclick="toggle(this)">
-<div class="section-title"><span class="section-number">5</span>Deliverables</div>
-<span class="toggle-icon">▼</span>
-</div>
-<div class="section-content">
-<div class="deliverable-card">
-<h3>1. Lovable.dev Referral Website with AI Search</h3>
-<p><strong>Done:</strong> Live URL for pitching new clients, AI search box (type business type & area for results), 3+ recommendations, mobile-responsive, tested with 5+ scenarios</p>
-<p><strong>Time:</strong> 20 hours (weeks 1-4)</p>
-</div>
-<div class="deliverable-card">
-<h3>2. Three New GHL Sub-Accounts</h3>
-<p><strong>Done:</strong> 3 clients onboarded, GHL configured, AI phone/email active, clients trained</p>
-<p><strong>Time:</strong> 15 hours (weeks 2-8)</p>
-</div>
-<div class="deliverable-card">
-<h3>3. Lovable-GHL Integration</h3>
-<p><strong>Done:</strong> API integration (or Google Sheets fallback), all 3 businesses accessible</p>
-<p><strong>Time:</strong> 10-12 hours (weeks 5-7)</p>
-</div>
-<div class="deliverable-card">
-<h3>4. Documentation</h3>
-<p><strong>Done:</strong> AI logic docs, flowcharts, GHL workflows, user guide</p>
-<p><strong>Time:</strong> 5 hours (weeks 8-9)</p>
-</div>
-</div>
-</div>
-<div class="section">
-<div class="section-header" onclick="toggle(this)">
-<div class="section-title"><span class="section-number">3</span>Scope</div>
-<span class="toggle-icon">▼</span>
-</div>
-<div class="section-content">
-<h3>🎯 Project Overview</h3>
-<p>This project will create an automated IT system, shown through an AI-designed website, that helps small business owners understand how to adapt to and use AI. The goal is to educate and guide users through the essentials of AI integration in business operations.</p>
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('project')">Project</div>
+      <div class="tab" onclick="switchTab('status')">Status Updates</div>
+    </div>
 
-<h3>✅ In Scope for Semester-Long Project (MVP Deliverables)</h3>
-<ol>
-<li>AI-designed website that demonstrates how small businesses can integrate IT and AI tools.</li>
-<li>Educational sections that explain AI concepts and their business impact in simple terms.</li>
-<li>Basic automation example such as a chatbot or form to show automation in action.</li>
-<li>User-friendly website layout designed for both small business owners and students.</li>
-</ol>
+    <!-- PROJECT TAB -->
+    <div id="project-tab" class="tab-content active">
+      <div class="content">
 
-<h3>🗺️ Roadmap Items – Up to 6 Months After Semester Ends</h3>
-<ol>
-<li>Expanded automation tools like scheduling or customer service integrations.</li>
-<li>Case study section showing real examples of AI helping small businesses.</li>
-<li>Analytics dashboard to track engagement and learning progress.</li>
-<li>Video tutorials to make the lessons more interactive.</li>
-<li>Multi-language support to reach a wider audience.</li>
-</ol>
+        <!-- 1. Title & Description / High-Level Outcome -->
+        <div class="section">
+          <div class="section-header active" onclick="toggle(this)">
+            <div class="section-title"><span class="section-number">1</span>Project Title and High-Level Outcome</div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content active">
+            <div class="stats-grid">
+              <div class="stat-card"><span class="stat-number">3</span><span>AI Channels</span></div>
+              <div class="stat-card"><span class="stat-number">1</span><span>Unified Solution</span></div>
+              <div class="stat-card"><span class="stat-number">∞</span><span>Opportunities Saved</span></div>
+            </div>
+            <p><strong>High-Level Outcome:</strong> By the end of the project, a fully functional <em>AI-integrated IT system</em> and website will be delivered and handed over to a small business client. The system will automate client communication processes — including lead capture, scheduling, and follow-up — using AI-driven tools designed and configured during the semester. Upon completion, the client will have full control of the system and the ability to operate it independently.</p>
+            <p>The project demonstrates the full lifecycle of technology project management — planning, design, implementation, testing, and client handoff — and shows how AI solutions can be integrated to meet real business needs.</p>
+          </div>
+        </div>
 
-<h3>❌ Truly Out of Scope</h3>
-<ol>
-<li>Building custom AI software or models (will use existing AI tools only).</li>
-<li>Providing real client IT services beyond demonstrations.</li>
-<li>Enterprise-level system integrations such as ERP or CRM platforms.</li>
-<li>Developing a mobile app version.</li>
-<li>Conducting AI research or technical development beyond educational use.</li>
-</ol>
-</div>
-</div>
-<div class="section">
-<div class="section-header" onclick="toggle(this)">
-<div class="section-title"><span class="section-number">7</span>Methodology</div>
-<span class="toggle-icon">▼</span>
-</div>
-<div class="section-content">
-<h3>Hybrid Approach</h3>
-<p><strong>Agile</strong> for website (4 sprints, weeks 1-8) | <strong>Waterfall</strong> for client onboarding (5 phases, weeks 2-9)</p>
-<div style="margin:30px 0;padding:20px;background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.1)">
-<h3 style="margin-top:0">Project Timeline</h3>
-<table style="margin:20px 0">
-<thead><tr><th style="width:50px">Done</th><th>Deliverable</th><th>Timeline</th><th>Expected Completion</th></tr></thead>
-<tbody>
-<tr><td><input type="checkbox" id="t1" class="timeline-check"></td><td>Lovable.dev Website with AI Search</td><td>Weeks 1-4</td><td>Week 4</td></tr>
-<tr><td><input type="checkbox" id="t2" class="timeline-check"></td><td>Three New GHL Sub-Accounts</td><td>Weeks 2-8</td><td>Week 8</td></tr>
-<tr><td><input type="checkbox" id="t3" class="timeline-check"></td><td>Lovable-GHL Integration</td><td>Weeks 5-7</td><td>Week 7</td></tr>
-<tr><td><input type="checkbox" id="t4" class="timeline-check"></td><td>Documentation & Workflows</td><td>Weeks 8-9</td><td>Week 9</td></tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="section">
-<div class="section-header" onclick="toggle(this)">
-<div class="section-title"><span class="section-number">8</span>Tools</div>
-<span class="toggle-icon">▼</span>
-</div>
-<div class="section-content">
-<div class="tool-card">
-<div class="tool-header"><div class="tool-name">GoHighLevel</div><div class="tool-cost">$297/mo</div></div>
-<p>I chose GoHighLevel because it's a robust platform with built-in automation and AI features. It helps manage and streamline client processes efficiently and makes the final handoff easy to explain and maintain.</p>
-</div>
-<div class="tool-card">
-<div class="tool-header"><div class="tool-name">Lovable.dev</div><div class="tool-cost">$25/mo</div></div>
-<p>Lovable.dev is an ideal choice since it uses AI to generate and iterate websites. As someone without a web development background, it allows me to quickly prototype and improve my systems without coding expertise.</p>
-</div>
-<div class="tool-card">
-<div class="tool-header"><div class="tool-name">Claude & ChatGPT</div><div class="tool-cost" style="background:#d1ecf1;color:#0c5460">Included</div></div>
-<p>These AI tools have been instrumental in improving my workflow. Rather than using them just to generate content, I use them interactively—they ask me questions that help refine my ideas and systems, which I then polish for implementation.</p>
-</div>
-<div class="tool-card">
-<div class="tool-header"><div class="tool-name">Monday.com</div><div class="tool-cost" style="background:#d1ecf1;color:#0c5460">Free</div></div>
-<p>I selected Monday.com because I already use it professionally and am comfortable with its interface. It supports both Agile and Waterfall tracking, making it easy to stay organized and visualize progress.</p>
-</div>
-<div class="tool-card">
-<div class="tool-header"><div class="tool-name">Google Sheets</div><div class="tool-cost" style="background:#d1ecf1;color:#0c5460">Free</div></div>
-<p>Google Sheets serves as a fallback integration tool in case direct system connections fail. It can act as a temporary database to keep the system functional until developer support is available, ensuring continuity even with limited technical resources.</p>
-</div>
-</div>
-</div>
-<div class="section">
-<div class="section-header" onclick="toggle(this)">
-<div class="section-title"><span class="section-number">9</span>Stakeholders</div>
-<span class="toggle-icon">▼</span>
-</div>
-<div class="section-content">
-<table>
-<thead><tr><th>Stakeholder</th><th>Category</th><th>Power</th><th>Interest</th><th>Strategy</th></tr></thead>
-<tbody>
-<tr><td>You (PM)</td><td><span class="tag internal">Internal</span></td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td>Direct control</td></tr>
-<tr><td>Professor</td><td><span class="tag internal">Internal</span></td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td>Regular updates</td></tr>
-<tr><td>Small Business Owners</td><td><span class="tag external">External</span></td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td>Involve in testing</td></tr>
-<tr><td>Classmates</td><td><span class="tag internal">Internal</span></td><td><span class="tag low">Low</span></td><td><span class="tag medium">Medium</span></td><td>Share progress</td></tr>
-<tr><td>Local Customers</td><td><span class="tag external">External</span></td><td><span class="tag low">Low</span></td><td><span class="tag medium">Medium</span></td><td>Gather feedback</td></tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div id="status-tab" class="tab-content">
-<div class="status-reports">
-<button class="add-report-btn" onclick="openModal()">+ Add New Status Report</button>
-<div id="reports-container"></div>
-</div>
-</div>
-</div>
-<div id="reportModal" class="modal">
-<div class="modal-content" style="max-width:800px">
-<div class="modal-header">New Status Report</div>
-<div class="form-group"><label>Reporting Period</label><input type="text" id="reportPeriod" placeholder="e.g., Week 1, Oct 1-7, 2025"></div>
-<div class="form-group">
-<label>Project Health</label>
-<select id="projectHealth" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;font-size:1rem">
-<option value="green">🟢 Green - On Track</option>
-<option value="yellow">🟡 Yellow - At Risk</option>
-<option value="red">🔴 Red - Off Track</option>
-</select>
-</div>
-<div class="form-group"><label>Project Health Executive Summary</label><textarea id="execSummary" placeholder="Brief overview of project status..." rows="3"></textarea></div>
-<div class="form-group"><label>Accomplishments this Week</label><textarea id="accomplishments" placeholder="What was completed this week..." rows="3"></textarea></div>
-<div class="form-group"><label>Plan for Next Week</label><textarea id="nextWeek" placeholder="What will be worked on next week..." rows="3"></textarea></div>
-<div class="form-group">
-<label>Upcoming Milestones</label>
-<div id="milestones-container">
-<div class="milestone-entry" style="display:flex;gap:10px;margin-bottom:10px">
-<input type="text" placeholder="Milestone name" style="flex:2;padding:8px;border:1px solid #ddd;border-radius:5px">
-<input type="date" style="flex:1;padding:8px;border:1px solid #ddd;border-radius:5px">
-<select style="flex:1;padding:8px;border:1px solid #ddd;border-radius:5px">
-<option value="on-track">On Track</option>
-<option value="at-risk">At Risk</option>
-<option value="off-track">Off Track</option>
-</select>
-</div>
-</div>
-<button type="button" onclick="addMilestone()" style="background:#3498db;color:#fff;border:none;padding:8px 16px;border-radius:5px;cursor:pointer;margin-top:5px">+ Add Milestone</button>
-</div>
-<div class="form-group">
-<label>Risk Assessment</label>
-<div><input type="radio" name="riskRadio" value="no" id="noRisk" checked> <label for="noRisk" style="display:inline;font-weight:normal">No Issues/Risks to Report</label></div>
-<div><input type="radio" name="riskRadio" value="yes" id="hasRisk"> <label for="hasRisk" style="display:inline;font-weight:normal">Report Issues/Risks</label></div>
-<textarea id="riskDetails" placeholder="Describe risks or issues..." rows="3" style="margin-top:10px;display:none"></textarea>
-</div>
-<div class="form-group">
-<label>Changes since Last Report</label>
-<div><input type="radio" name="changesRadio" value="no" id="noChanges" checked> <label for="noChanges" style="display:inline;font-weight:normal">No Changes to Report</label></div>
-<div><input type="radio" name="changesRadio" value="yes" id="hasChanges"> <label for="hasChanges" style="display:inline;font-weight:normal">Report Changes</label></div>
-<textarea id="changeDetails" placeholder="Describe changes..." rows="3" style="margin-top:10px;display:none"></textarea>
-</div>
-<div class="modal-buttons">
-<button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-<button class="btn btn-primary" onclick="saveReport()">Save Report</button>
-</div>
-</div>
-</div>
-<script>
-let reports=JSON.parse(localStorage.getItem('statusReports')||'[]');let timeline=JSON.parse(localStorage.getItem('timeline')||'{}');function switchTab(t){document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(e=>e.classList.remove('active'));if(t==='project'){document.querySelectorAll('.tab')[0].classList.add('active');document.getElementById('project-tab').classList.add('active')}else{document.querySelectorAll('.tab')[1].classList.add('active');document.getElementById('status-tab').classList.add('active')}}function addMilestone(){const container=document.getElementById('milestones-container');const entry=document.createElement('div');entry.className='milestone-entry';entry.style.cssText='display:flex;gap:10px;margin-bottom:10px';entry.innerHTML='<input type="text" placeholder="Milestone name" style="flex:2;padding:8px;border:1px solid #ddd;border-radius:5px"><input type="date" style="flex:1;padding:8px;border:1px solid #ddd;border-radius:5px"><select style="flex:1;padding:8px;border:1px solid #ddd;border-radius:5px"><option value="on-track">On Track</option><option value="at-risk">At Risk</option><option value="off-track">Off Track</option></select><button type="button" onclick="this.parentElement.remove()" style="background:#e74c3c;color:#fff;border:none;padding:8px;border-radius:5px;cursor:pointer">×</button>';container.appendChild(entry)}function openModal(){document.getElementById('reportModal').classList.add('active');document.getElementById('hasRisk').addEventListener('change',function(){document.getElementById('riskDetails').style.display=this.checked?'block':'none'});document.getElementById('noRisk').addEventListener('change',function(){document.getElementById('riskDetails').style.display='none'});document.getElementById('hasChanges').addEventListener('change',function(){document.getElementById('changeDetails').style.display=this.checked?'block':'none'});document.getElementById('noChanges').addEventListener('change',function(){document.getElementById('changeDetails').style.display='none'})}function closeModal(){document.getElementById('reportModal').classList.remove('active');document.getElementById('reportPeriod').value='';document.getElementById('projectHealth').value='green';document.getElementById('execSummary').value='';document.getElementById('accomplishments').value='';document.getElementById('nextWeek').value='';document.getElementById('milestones-container').innerHTML='<div class="milestone-entry" style="display:flex;gap:10px;margin-bottom:10px"><input type="text" placeholder="Milestone name" style="flex:2;padding:8px;border:1px solid #ddd;border-radius:5px"><input type="date" style="flex:1;padding:8px;border:1px solid #ddd;border-radius:5px"><select style="flex:1;padding:8px;border:1px solid #ddd;border-radius:5px"><option value="on-track">On Track</option><option value="at-risk">At Risk</option><option value="off-track">Off Track</option></select></div>';document.getElementById('noRisk').checked=true;document.getElementById('riskDetails').style.display='none';document.getElementById('riskDetails').value='';document.getElementById('noChanges').checked=true;document.getElementById('changeDetails').style.display='none';document.getElementById('changeDetails').value=''}function saveReport(){const period=document.getElementById('reportPeriod').value;const health=document.getElementById('projectHealth').value;const exec=document.getElementById('execSummary').value;const acc=document.getElementById('accomplishments').value;const next=document.getElementById('nextWeek').value;const milestones=Array.from(document.querySelectorAll('.milestone-entry')).map(e=>{const inputs=e.querySelectorAll('input');const select=e.querySelector('select');return{name:inputs[0].value,date:inputs[1].value,status:select.value}}).filter(m=>m.name);const hasRisk=document.getElementById('hasRisk').checked;const riskDetails=hasRisk?document.getElementById('riskDetails').value:'';const hasChanges=document.getElementById('hasChanges').checked;const changeDetails=hasChanges?document.getElementById('changeDetails').value:'';if(!period){alert('Please enter reporting period');return}reports.unshift({id:Date.now(),period:period,health:health,execSummary:exec,accomplishments:acc,nextWeek:next,milestones:milestones,hasRisk:hasRisk,riskDetails:riskDetails,hasChanges:hasChanges,changeDetails:changeDetails});localStorage.setItem('statusReports',JSON.stringify(reports));renderReports();closeModal()}function deleteReport(id){if(confirm('Delete this report?')){reports=reports.filter(r=>r.id!==id);localStorage.setItem('statusReports',JSON.stringify(reports));renderReports()}}function renderReports(){const c=document.getElementById('reports-container');if(reports.length===0){c.innerHTML='<p style="text-align:center;color:#666;padding:40px">No status reports yet. Click "Add New Status Report" to create one.</p>';return}c.innerHTML=reports.map(r=>{const healthColors={green:'🟢 Green - On Track',yellow:'🟡 Yellow - At Risk',red:'🔴 Red - Off Track'};const statusColors={'on-track':'#d4edda','at-risk':'#fff3cd','off-track':'#f8d7da'};const statusText={'on-track':'On Track','at-risk':'At Risk','off-track':'Off Track'};let html=`<div class="report-card"><div class="report-header"><div><div class="report-title">Status Report</div><div class="report-date">${r.period}</div></div><button class="delete-btn" onclick="deleteReport(${r.id})">Delete</button></div>`;html+=`<div style="margin:15px 0"><strong>Project Health:</strong> ${healthColors[r.health]}</div>`;if(r.execSummary)html+=`<div style="margin:15px 0"><strong>Executive Summary:</strong><p style="margin-top:5px">${r.execSummary}</p></div>`;if(r.accomplishments)html+=`<div style="margin:15px 0"><strong>Accomplishments this Week:</strong><p style="margin-top:5px">${r.accomplishments}</p></div>`;if(r.nextWeek)html+=`<div style="margin:15px 0"><strong>Plan for Next Week:</strong><p style="margin-top:5px">${r.nextWeek}</p></div>`;if(r.milestones&&r.milestones.length>0){html+=`<div style="margin:15px 0"><strong>Upcoming Milestones:</strong><div style="margin-top:10px">`;r.milestones.forEach(m=>{if(m.name){const d=m.date?new Date(m.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'No date';html+=`<div style="display:flex;justify-content:space-between;padding:8px;background:${statusColors[m.status]};border-radius:5px;margin:5px 0"><span>${m.name}</span><span>${d} - ${statusText[m.status]}</span></div>`}});html+=`</div></div>`}html+=`<div style="margin:15px 0"><strong>Risk Assessment:</strong> ${r.hasRisk?'<span style="color:#e74c3c">Issues/Risks Reported</span>':'<span style="color:#27ae60">No Issues/Risks</span>'}`;if(r.hasRisk&&r.riskDetails)html+=`<p style="margin-top:5px;color:#555">${r.riskDetails}</p>`;html+=`</div>`;html+=`<div style="margin:15px 0"><strong>Changes since Last Report:</strong> ${r.hasChanges?'<span style="color:#e67e22">Changes Reported</span>':'<span style="color:#27ae60">No Changes</span>'}`;if(r.hasChanges&&r.changeDetails)html+=`<p style="margin-top:5px;color:#555">${r.changeDetails}</p>`;html+=`</div></div>`;return html}).join('')}function toggle(h){const c=h.nextElementSibling;const a=h.classList.contains('active');document.querySelectorAll('.section-header').forEach(s=>{s.classList.remove('active');s.nextElementSibling.classList.remove('active')});if(!a){h.classList.add('active');c.classList.add('active')}}document.addEventListener('DOMContentLoaded',()=>{document.querySelector('.section-header').click();renderReports();['t1','t2','t3','t4'].forEach(id=>{const cb=document.getElementById(id);if(cb){cb.checked=timeline[id]||false;cb.addEventListener('change',function(){timeline[id]=this.checked;localStorage.setItem('timeline',JSON.stringify(timeline))})}})});
-</script>
+        <!-- 2. Vision/Mission/Strategy Alignment -->
+        <div class="section">
+          <div class="section-header" onclick="toggle(this)">
+            <div class="section-title"><span class="section-number">2</span>Vision, Mission and Strategy Alignment</div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="goal-callout"><strong>Project Goal:</strong> Deploy a GoHighLevel-powered system by December 6, 2025, connecting 6 small businesses through automated AI engagement to generate measurable client acquisition results, then hand off the solution for independent operation.</div>
+            <div class="metric-grid">
+              <div class="metric-box"><span class="metric-value">6</span><span>Total Businesses</span></div>
+              <div class="metric-box"><span class="metric-value">3</span><span>New Clients</span></div>
+              <div class="metric-box"><span class="metric-value">Dec 6</span><span>Deadline</span></div>
+              <div class="metric-box"><span class="metric-value">50hrs</span><span>Time Investment</span></div>
+            </div>
+            <h3>Personal Mission</h3>
+            <p>I am focused on solving real operational problems for small businesses by simplifying technology and making AI accessible.</p>
+            <h3>Vision Alignment</h3>
+            <p>This project builds a repeatable model for small business digital enablement, increasing visibility and competitiveness through practical automation.</p>
+          </div>
+        </div>
+
+        <!-- 3. Business Case -->
+        <div class="section">
+          <div class="section-header" onclick="toggle(this)">
+            <div class="section-title"><span class="section-number">3</span>Business Case and Justification</div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <h3>Professional Value</h3>
+            <p>Demonstrates the ability to deliver outcomes-based IT projects that leverage AI to improve customer engagement and operational efficiency.</p>
+            <h3>Learning Outcomes</h3>
+            <p>Strengthens practical skills across web implementation, AI-enabled workflows, and project lifecycle management.</p>
+          </div>
+        </div>
+
+        <!-- 4. Budget -->
+        <div class="section">
+          <div class="section-header" onclick="toggle(this)">
+            <div class="section-title"><span class="section-number">4</span>Budget Estimation</div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <table>
+              <thead><tr><th>Item</th><th>Cost</th><th>Total</th></tr></thead>
+              <tbody>
+                <tr><td>GoHighLevel Agency Pro</td><td>$297/mo × 3</td><td><strong>$891</strong></td></tr>
+                <tr><td>Lovable.dev</td><td>$25/mo × 3</td><td><strong>$75</strong></td></tr>
+                <tr><td>Labor</td><td>50 hrs × $75</td><td><strong>$3,750</strong></td></tr>
+                <tr style="font-weight:bold"><td colspan="2">Total Budget</td><td><strong>$4,716</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 5. Deliverables -->
+        <div class="section">
+          <div class="section-header" onclick="toggle(this)">
+            <div class="section-title"><span class="section-number">5</span>Deliverables</div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="deliverable-card">
+              <h3>1. Lovable.dev Website with AI Search</h3>
+              <p><strong>Done:</strong> Live URL, AI search box (business type + area), at least 3 recommendations, mobile-responsive, tested with 5+ scenarios.</p>
+              <p><strong>Time:</strong> 20 hours (weeks 1–4)</p>
+            </div>
+            <div class="deliverable-card">
+              <h3>2. Three New GHL Sub-Accounts</h3>
+              <p><strong>Done:</strong> 3 clients onboarded, core GHL automations active (AI phone/email/chat).</p>
+              <p><strong>Time:</strong> 15 hours (weeks 2–8)</p>
+            </div>
+            <div class="deliverable-card">
+              <h3>3. Lovable ↔ GHL Integration</h3>
+              <p><strong>Done:</strong> API integration or Google Sheets fallback; unified access for 6 businesses.</p>
+              <p><strong>Time:</strong> 10–12 hours (weeks 5–7)</p>
+            </div>
+            <div class="deliverable-card">
+              <h3>4. Handoff</h3>
+              <p><strong>Done:</strong> Transfer of administrative access and control to client for independent operation.</p>
+              <p><strong>Time:</strong> 5 hours (weeks 8–9)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Scope -->
+        <div class="section">
+          <div class="section-header" onclick="toggle(this)">
+            <div class="section-title"><span class="section-number">6</span>Scope</div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <h3>🎯 Project Overview</h3>
+            <p>This project will create an automated IT system, shown through an AI-designed website, that helps small business owners understand how to adapt to and use AI. The goal is to educate and guide users through the essentials of AI integration in business operations, culminating in a client handoff.</p>
+
+            <h3>✅ In Scope for Semester-Long Project (MVP Deliverables)</h3>
+            <ol>
+              <li>AI-designed website that demonstrates how small businesses can integrate IT and AI tools.</li>
+              <li>Educational sections that explain AI concepts and their business impact in simple terms.</li>
+              <li>Basic automation example such as a chatbot or form to show automation in action.</li>
+              <li>User-friendly website layout designed for both small business owners and students.</li>
+            </ol>
+
+            <h3>🗺️ Roadmap Items – Up to 6 Months After Semester Ends</h3>
+            <ol>
+              <li>Expanded automation tools like scheduling or customer service integrations.</li>
+              <li>Case study section showing real examples of AI helping small businesses.</li>
+              <li>Analytics dashboard to track engagement and learning progress.</li>
+              <li>Video tutorials to make the lessons more interactive.</li>
+              <li>Multi-language support to reach a wider audience.</li>
+            </ol>
+
+            <h3>❌ Truly Out of Scope</h3>
+            <ol>
+              <li>Building custom AI software or models (will use existing AI tools only).</li>
+              <li>Providing real client IT services beyond demonstrations.</li>
+              <li>Enterprise-level system integrations such as ERP or CRM platforms.</li>
+              <li>Developing a mobile app version.</li>
+              <li>Conducting AI research or technical development beyond educational use.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- 7. Methodology -->
+        <div class="section">
+          <div class="section-header" onclick="toggle(this)">
+            <div class="section-title"><span class="section-number">7</span>Methodology</div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <h3>Hybrid Approach</h3>
+            <p><strong>Agile</strong> for website (4 sprints, weeks 1–8) | <strong>Waterfall</strong> for client onboarding (5 phases, weeks 2–9)</p>
+            <div style="margin:30px 0;padding:20px;background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.1)">
+              <h3 style="margin-top:0">Project Timeline</h3>
+              <table style="margin:20px 0">
+                <thead><tr><th style="width:50px">Done</th><th>Deliverable</th><th>Timeline</th><th>Expected Completion</th></tr></thead>
+                <tbody>
+                  <tr><td><input type="checkbox" id="t1" class="timeline-check"></td><td>Lovable.dev Website with AI Search</td><td>Weeks 1–4</td><td>Week 4</td></tr>
+                  <tr><td><input type="checkbox" id="t2" class="timeline-check"></td><td>Three New GHL Sub-Accounts</td><td>Weeks 2–8</td><td>Week 8</td></tr>
+                  <tr><td><input type="checkbox" id="t3" class="timeline-check"></td><td>Lovable ↔ GHL Integration</td><td>Weeks 5–7</td><td>Week 7</td></tr>
+                  <tr><td><input type="checkbox" id="t4" class="timeline-check"></td><td>Handoff</td><td>Weeks 8–9</td><td>Week 9</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Tools -->
+        <div class="section">
+          <div class="section-header" onclick="toggle(this)">
+            <div class="section-title"><span class="section-number">8</span>Tools</div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="tool-card">
+              <div class="tool-header"><div class="tool-name">GoHighLevel</div><div class="tool-cost">$297/mo</div></div>
+              <p>Robust platform with built-in automation and AI features for managing client processes and facilitating a smooth handoff.</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-header"><div class="tool-name">Lovable.dev</div><div class="tool-cost">$25/mo</div></div>
+              <p>AI-assisted site generation for rapid prototyping and iteration without heavy coding.</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-header"><div class="tool-name">Claude &amp; ChatGPT</div><div class="tool-cost" style="background:#d1ecf1;color:#0c5460">Included</div></div>
+              <p>Interactive ideation and refinement to accelerate content and workflow clarity.</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-header"><div class="tool-name">Monday.com</div><div class="tool-cost" style="background:#d1ecf1;color:#0c5460">Free</div></div>
+              <p>Supports both Agile and Waterfall tracking to visualize progress and manage dependencies.</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-header"><div class="tool-name">Google Sheets</div><div class="tool-cost" style="background:#d1ecf1;color:#0c5460">Free</div></div>
+              <p>Fallback integration layer (temporary datastore) when direct connections are unavailable.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Stakeholders -->
+        <div class="section">
+          <div class="section-header" onclick="toggle(this)">
+            <div class="section-title"><span class="section-number">9</span>Stakeholders</div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <table>
+              <thead><tr><th>Stakeholder</th><th>Category</th><th>Power</th><th>Interest</th><th>Strategy</th></tr></thead>
+              <tbody>
+                <tr><td>You (PM)</td><td><span class="tag internal">Internal</span></td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td>Direct control</td></tr>
+                <tr><td>Professor</td><td><span class="tag internal">Internal</span></td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td>Regular updates</td></tr>
+                <tr><td>Small Business Client</td><td><span class="tag external">External</span></td><td><span class="tag high">High</span></td><td><span class="tag high">High</span></td><td>Handoff &amp; empowerment</td></tr>
+                <tr><td>Classmates</td><td><span class="tag internal">Internal</span></td><td><span class="tag low">Low</span></td><td><span class="tag medium">Medium</span></td><td>Share progress</td></tr>
+                <tr><td>Local Customers</td><td><span class="tag external">External</span></td><td><span class="tag low">Low</span></td><td><span class="tag medium">Medium</span></td><td>Gather feedback</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- STATUS TAB -->
+    <div id="status-tab" class="tab-content">
+      <div class="status-reports">
+        <button class="add-report-btn" onclick="openModal()">+ Add New Status Report</button>
+
+        <!-- Large callout indicating migration to Lovable -->
+        <div class="moved-callout">
+          <h2 style="margin-bottom:10px;">⚠️ Project Data Moved</h2>
+          <p style="font-size:1.1rem;line-height:1.5;">Data from this status report system was not saving correctly through GitHub.
+            The project has been fully migrated to Lovable for continued updates and tracking.</p>
+          <a href="https://info-layout-weaver.lovable.app/" target="_blank" rel="noopener">View the Updated Project on Lovable</a>
+        </div>
+
+        <div id="reports-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Status Reports -->
+  <div id="reportModal" class="modal">
+    <div class="modal-content" style="max-width:800px">
+      <div class="modal-header">New Status Report</div>
+      <div class="form-group"><label>Reporting Period</label><input type="text" id="reportPeriod" placeholder="e.g., Week 1, Oct 1–7, 2025"></div>
+      <div class="form-group">
+        <label>Project Health</label>
+        <select id="projectHealth">
+          <option value="green">🟢 Green - On Track</option>
+          <option value="yellow">🟡 Yellow - At Risk</option>
+          <option value="red">🔴 Red - Off Track</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Project Health Executive Summary</label><textarea id="execSummary" placeholder="Brief overview of project status..." rows="3"></textarea></div>
+      <div class="form-group"><label>Accomplishments this Week</label><textarea id="accomplishments" placeholder="What was completed this week..." rows="3"></textarea></div>
+      <div class="form-group"><label>Plan for Next Week</label><textarea id="nextWeek" placeholder="What will be worked on next week..." rows="3"></textarea></div>
+      <div class="form-group">
+        <label>Upcoming Milestones</label>
+        <div id="milestones-container">
+          <div class="milestone-entry" style="display:flex;gap:10px;margin-bottom:10px">
+            <input type="text" placeholder="Milestone name" style="flex:2;padding:8px;border:1px solid #ddd;border-radius:5px">
+            <input type="date" style="flex:1;padding:8px;border:1px solid #ddd;border-radius:5px">
+            <select style="flex:1;padding:8px;border:1px solid #ddd;border-radius:5px">
+              <option value="on-track">On Track</option>
+              <option value="at-risk">At Risk</option>
+              <option value="off-track">Off Track</option>
+            </select>
+            <button type="button" onclick="this.parentElement.remove()" style="background:#e74c3c;color:#fff;border:none;padding:8px;border-radius:5px;cursor:pointer">×</button>
+          </div>
+        </div>
+        <button type="button" onclick="addMilestone()" style="background:#3498db;color:#fff;border:none;padding:8px 16px;border-radius:5px;cursor:pointer;margin-top:5px">+ Add Milestone</button>
+      </div>
+      <div class="form-group">
+        <label>Risk Assessment</label>
+        <div><input type="radio" name="riskRadio" value="no" id="noRisk" checked> <label for="noRisk" style="display:inline;font-weight:normal">No Issues/Risks to Report</label></div>
+        <div><input type="radio" name="riskRadio" value="yes" id="hasRisk"> <label for="hasRisk" style="display:inline;font-weight:normal">Report Issues/Risks</label></div>
+        <textarea id="riskDetails" placeholder="Describe risks or issues..." rows="3" style="margin-top:10px;display:none"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Changes since Last Report</label>
+        <div><input type="radio" name="changesRadio" value="no" id="noChanges" checked> <label for="noChanges" style="display:inline;font-weight:normal">No Changes to Report</label></div>
+        <div><input type="radio" name="changesRadio" value="yes" id="hasChanges"> <label for="hasChanges" style="display:inline;font-weight:normal">Report Changes</label></div>
+        <textarea id="changeDetails" placeholder="Describe changes..." rows="3" style="margin-top:10px;display:none"></textarea>
+      </div>
+      <div class="modal-buttons">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveReport()">Save Report</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let reports = JSON.parse(localStorage.getItem('statusReports') || '[]');
+    let timeline = JSON.parse(localStorage.getItem('timeline') || '{}');
+
+    function switchTab(tab){
+      document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(e=>e.classList.remove('active'));
+      if(tab==='project'){
+        document.querySelectorAll('.tab')[0].classList.add('active');
+        document.getElementById('project-tab').classList.add('active');
+      } else {
+        document.querySelectorAll('.tab')[1].classList.add('active');
+        document.getElementById('status-tab').classList.add('active');
+      }
+    }
+
+    function addMilestone(){
+      const container = document.getElementById('milestones-container');
+      const entry = document.createElement('div');
+      entry.className = 'milestone-entry';
+      entry.style.cssText = 'display:flex;gap:10px;margin-bottom:10px';
+      entry.innerHTML = '<input type="text" placeholder="Milestone name" style="flex:2;padding:8px;border:1px solid #ddd;border-radius:5px">\
+      <input type="date" style="flex:1;padding:8px;border:1px solid #ddd;border-radius:5px">\
+      <select style="flex:1;padding:8px;border:1px solid #ddd;border-radius:5px">\
+        <option value="on-track">On Track</option>\
+        <option value="at-risk">At Risk</option>\
+        <option value="off-track">Off Track</option>\
+      </select>\
+      <button type="button" onclick="this.parentElement.remove()" style="background:#e74c3c;color:#fff;border:none;padding:8px;border-radius:5px;cursor:pointer">×</button>';
+      container.appendChild(entry);
+    }
+
+    function openModal(){
+      document.getElementById('reportModal').classList.add('active');
+      document.getElementById('hasRisk').addEventListener('change', function(){
+        document.getElementById('riskDetails').style.display = this.checked ? 'block' : 'none';
+      });
+      document.getElementById('noRisk').addEventListener('change', function(){
+        document.getElementById('riskDetails').style.display = 'none';
+      });
+      document.getElementById('hasChanges').addEventListener('change', function(){
+        document.getElementById('changeDetails').style.display = this.checked ? 'block' : 'none';
+      });
+      document.getElementById('noChanges').addEventListener('change', function(){
+        document.getElementById('changeDetails').style.display = 'none';
+      });
+    }
+
+    function closeModal(){
+      document.getElementById('reportModal').classList.remove('active');
+      document.getElementById('reportPeriod').value = '';
+      document.getElementById('projectHealth').value = 'green';
+      document.getElementById('execSummary').value = '';
+      document.getElementById('accomplishments').value = '';
+      document.getElementById('nextWeek').value = '';
+      document.getElementById('milestones-container').innerHTML = '<div class="milestone-entry" style="display:flex;gap:10px;margin-bottom:10px">\
+        <input type="text" placeholder="Milestone name" style="flex:2;padding:8px;border:1px solid #ddd;border-radius:5px">\
+        <input type="date" style="flex:1;padding:8px;border:1px solid #ddd;border-radius:5px">\
+        <select style="flex:1;padding:8px;border:1px solid #ddd;border-radius:5px">\
+          <option value="on-track">On Track</option>\
+          <option value="at-risk">At Risk</option>\
+          <option value="off-track">Off Track</option>\
+        </select>\
+      </div>';
+      document.getElementById('noRisk').checked = true;
+      document.getElementById('riskDetails').style.display = 'none';
+      document.getElementById('riskDetails').value = '';
+      document.getElementById('noChanges').checked = true;
+      document.getElementById('changeDetails').style.display = 'none';
+      document.getElementById('changeDetails').value = '';
+    }
+
+    function saveReport(){
+      const period = document.getElementById('reportPeriod').value;
+      const health = document.getElementById('projectHealth').value;
+      const exec = document.getElementById('execSummary').value;
+      const acc = document.getElementById('accomplishments').value;
+      const next = document.getElementById('nextWeek').value;
+      const milestones = Array.from(document.querySelectorAll('.milestone-entry')).map(e=>{
+        const inputs = e.querySelectorAll('input');
+        const select = e.querySelector('select');
+        return { name: inputs[0].value, date: inputs[1].value, status: select.value };
+      }).filter(m=>m.name);
+
+      const hasRisk = document.getElementById('hasRisk').checked;
+      const riskDetails = hasRisk ? document.getElementById('riskDetails').value : '';
+
+      const hasChanges = document.getElementById('hasChanges').checked;
+      const changeDetails = hasChanges ? document.getElementById('changeDetails').value : '';
+
+      if(!period){ alert('Please enter reporting period'); return; }
+
+      reports.unshift({
+        id: Date.now(),
+        period, health, execSummary: exec, accomplishments: acc, nextWeek: next,
+        milestones, hasRisk, riskDetails, hasChanges, changeDetails
+      });
+
+      localStorage.setItem('statusReports', JSON.stringify(reports));
+      renderReports();
+      closeModal();
+    }
+
+    function deleteReport(id){
+      if(confirm('Delete this report?')){
+        reports = reports.filter(r => r.id !== id);
+        localStorage.setItem('statusReports', JSON.stringify(reports));
+        renderReports();
+      }
+    }
+
+    function renderReports(){
+      const c = document.getElementById('reports-container');
+      if(reports.length === 0){
+        c.innerHTML = '<p style="text-align:center;color:#666;padding:40px">No status reports yet. Click "Add New Status Report" to create one.</p>';
+        return;
+      }
+      const healthLabels = { green:'🟢 Green - On Track', yellow:'🟡 Yellow - At Risk', red:'🔴 Red - Off Track' };
+      const statusColors = { 'on-track':'#d4edda', 'at-risk':'#fff3cd', 'off-track':'#f8d7da' };
+      const statusText   = { 'on-track':'On Track', 'at-risk':'At Risk', 'off-track':'Off Track' };
+
+      c.innerHTML = reports.map(r=>{
+        let html = `<div class="report-card">`+
+          `<div class="report-header"><div><div class="report-title">Status Report</div><div class="report-date">${r.period}</div></div>`+
+          `<button class="delete-btn" onclick="deleteReport(${r.id})">Delete</button></div>`+
+          `<div style=\"margin:15px 0\"><strong>Project Health:</strong> ${healthLabels[r.health]}</div>`;
+        if(r.execSummary) html += `<div style=\"margin:15px 0\"><strong>Executive Summary:</strong><p style=\"margin-top:5px\">${r.execSummary}</p></div>`;
+        if(r.accomplishments) html += `<div style=\"margin:15px 0\"><strong>Accomplishments this Week:</strong><p style=\"margin-top:5px\">${r.accomplishments}</p></div>`;
+        if(r.nextWeek) html += `<div style=\"margin:15px 0\"><strong>Plan for Next Week:</strong><p style=\"margin-top:5px\">${r.nextWeek}</p></div>`;
+        if(r.milestones && r.milestones.length>0){
+          html += `<div style=\"margin:15px 0\"><strong>Upcoming Milestones:</strong><div style=\"margin-top:10px\">`;
+          r.milestones.forEach(m=>{
+            if(m.name){
+              const d = m.date ? new Date(m.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : 'No date';
+              html += `<div style=\"display:flex;justify-content:space-between;padding:8px;background:${statusColors[m.status]};border-radius:5px;margin:5px 0\"><span>${m.name}</span><span>${d} - ${statusText[m.status]}</span></div>`;
+            }
+          });
+          html += `</div></div>`;
+        }
+        html += `<div style=\"margin:15px 0\"><strong>Risk Assessment:</strong> ${r.hasRisk?'<span style="color:#e74c3c">Issues/Risks Reported</span>':'<span style="color:#27ae60">No Issues/Risks</span>'}`;
+        if(r.hasRisk && r.riskDetails) html += `<p style=\"margin-top:5px;color:#555\">${r.riskDetails}</p>`;
+        html += `</div>`;
+        html += `<div style=\"margin:15px 0\"><strong>Changes since Last Report:</strong> ${r.hasChanges?'<span style="color:#e67e22">Changes Reported</span>':'<span style="color:#27ae60">No Changes</span>'}`;
+        if(r.hasChanges && r.changeDetails) html += `<p style=\"margin-top:5px;color:#555\">${r.changeDetails}</p>`;
+        html += `</div></div>`;
+        return html;
+      }).join('');
+    }
+
+    function toggle(h){
+      const c = h.nextElementSibling;
+      const a = h.classList.contains('active');
+      document.querySelectorAll('.section-header').forEach(s=>{s.classList.remove('active');s.nextElementSibling.classList.remove('active')});
+      if(!a){ h.classList.add('active'); c.classList.add('active'); }
+    }
+
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.querySelector('.section-header').click();
+      renderReports();
+      ['t1','t2','t3','t4'].forEach(id=>{
+        const cb = document.getElementById(id);
+        if(cb){
+          cb.checked = timeline[id] || false;
+          cb.addEventListener('change', function(){
+            timeline[id] = this.checked;
+            localStorage.setItem('timeline', JSON.stringify(timeline));
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
